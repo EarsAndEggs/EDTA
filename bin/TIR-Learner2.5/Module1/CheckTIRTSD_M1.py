@@ -68,10 +68,15 @@ def Conserved(fam,s1):
             #CACWATG
             motif1=s1.upper()[0:7]
             pattern = "CAC[AT]ATG"
+        if fam == "DTB":
+            #CCYT
+            motif1=s1.upper()[0:4]
+            pattern = "CC[CT]T"
         if fam == "DTP":
             #CANRG
             motif1=s1.upper()[0:5]
             pattern = "CA[ATGC][AG]G"
+            
         motif2 = str(Seq(motif1).reverse_complement())
         z1=bool(re.match(pattern,motif1))
         z2=bool(re.match(pattern,motif2))
@@ -93,6 +98,14 @@ def ConservedDTT(set1,tsd_dffset,l):
         if (tsd_dffset[i]<l*0.2):
             s1=set1[int(i.split(":")[0])]
             if (s1[0:2].lower()=="ta"):
+                return True
+    return False
+
+def ConservedDTB(set1,tsd_dffset,l):
+    for i in tsd_dffset:
+        if (tsd_dffset[i]<l*0.2):
+            s1=set1[int(i.split(":")[0])]
+            if (s1[0:4].lower()=="ttaa"):
                 return True
     return False
 
@@ -153,7 +166,10 @@ def CheckTSD(arglist):
         elif (family == "DTT" and ConservedDTT(set1, dff, i) == True):
             dic[rec.id] = i
             break
-        elif (family != "DTH" and family !="DTT"):
+        elif (family == "DTB" and ConservedDTB(set1, dff, i) == True):
+            dic[rec.id] = i
+            break
+        elif (family != "DTH" and family !="DTT" and family !="DTB"):
             TSDexist = isTSD(dff, i)
             if (TSDexist == True):
                 dic[rec.id] = i
