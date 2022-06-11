@@ -71,7 +71,7 @@ def Conserved(fam,s1):
             motif1=s1.upper()[0:7]
             pattern = "CAC[AT]ATG"
         if fam == "DTB":
-            #CHHDDD
+            #CCYT
             motif1=s1.upper()[0:4]
             pattern = "CC[CT]T"
         if fam == "DTP":
