@@ -10,20 +10,24 @@
 module load conda
 
 # set EDTA paths
-EDTA=/crex/proj/sllstore2017073/private/Ali/Barnacle/EDTA/
+# arg:
+#   EDTA (dir): Path to EDTA installation directory
+#   INPUTDIR (dir): Path to input folder for analysis
+#   GENOME (file): FASTA file of the genome
+#   CDS (file): FASTA file of the coding sequence (no introns, UTRs or TEs)
+#   BED (file): FASTA to exclude bed format reguons from TE annotations
+
+EDTA=
 INPUTDIR=
 GENOME=
 CDS=
 BED=
 
-cd ${EDTA}
-
 # activate conda environment
+cd ${EDTA}
 pwd
 source conda_init.sh
 conda activate ${EDTA}EDTA
-
-
 
 # perl EDTA.pl [options]
 #   --genome	[File]	The genome FASTA
@@ -52,6 +56,6 @@ conda activate ${EDTA}EDTA
 #cd ${EDTA}test
 #time perl ${EDTA}EDTA.pl --genome genome.fa --cds genome.cds.fa --exclude genome.exclude.bed --overwrite 1 --sensitive 1 --anno 1 --evaluate 1 --threads 10
 
-# run EDTA script (uncomment to run EDTA test)
-cd ${INPUTFOLDER}
+# run EDTA script (uncomment to run EDTA test)(change options to cater for your analysis)
+cd ${INPUTDIR}
 time perl ${EDTA}EDTA.pl --genome ${GENOME} --cds ${CDS} --exclude ${BED} --overwrite 1 --sensitive 1 --anno 1 --evaluate 1 --threads 20
