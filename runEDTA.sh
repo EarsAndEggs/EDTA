@@ -56,6 +56,6 @@ conda activate ${EDTA}EDTA
 #cd ${EDTA}test
 #time perl ${EDTA}EDTA.pl --genome genome.fa --cds genome.cds.fa --exclude genome.exclude.bed --overwrite 1 --sensitive 1 --anno 1 --evaluate 1 --threads 10
 
-# run EDTA script (uncomment to run EDTA test)(change options to cater for your analysis)
+# run EDTA script (comment to run EDTA test)(change options to cater for your analysis)
 cd ${INPUTDIR}
 time perl ${EDTA}EDTA.pl --genome ${GENOME} --cds ${CDS} --exclude ${BED} --overwrite 1 --sensitive 1 --anno 1 --evaluate 1 --threads 20
